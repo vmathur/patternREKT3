@@ -40,7 +40,7 @@ for i=1:10
         testMeans(1:2,i) = m';
         testVariances(1:2,i*2-1:i*2) = S;   
         
-        clear data testdata
+        clear data testdata m S
 end
         
 
