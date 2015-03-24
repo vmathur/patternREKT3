@@ -58,3 +58,26 @@ subplot(3,1,3)
 aplot(f32)
 %legend('cloth', 'cotton', 'grass', 'pigskin', 'wood', 'cork', 'paper', 'stone', 'raiffa', 'face')
 % can't use legend with aplot
+
+%%part 4: seg! seeeeeeeeeeg!
+imageSize = size(multim);
+cimage = zeros(imageSize); 
+for i=1:imageSize(1)
+    for j=1:imageSize(2) 
+        cimage(i,j) = micd_classify([multf8(i,j,1); multf8(i,j,2)],...
+            f8means, f8covariances);
+               
+        %gurnses' micd signature!
+        %micd_classify(testpoint,means,covariances)
+    end
+end
+
+%we should NOT have any zeros in the output!
+figure(40)
+imagesc(multim)
+title('Original composite image in imagesc')
+figure(41)
+imagesc(cimage)
+title('Classified composite image in imagesc')
+
+
