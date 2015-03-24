@@ -39,11 +39,10 @@ for i=1:10
         [m,S] = getMeanCovar(testdata');
         testMeans(1:2,i) = m';
         testVariances(1:2,i*2-1:i*2) = S;   
-        
-        clear data testdata m S
+
 end
 
-clear i
+clear i data testdata m S
         
 
 
@@ -57,4 +56,5 @@ subplot(3,1,2)
 aplot(f8)
 subplot(3,1,3)
 aplot(f32)
-legend('cloth', 'cotton', 'grass', 'pigskin', 'wood', 'cork', 'paper', 'stone', 'raiffa', 'face')
+%legend('cloth', 'cotton', 'grass', 'pigskin', 'wood', 'cork', 'paper', 'stone', 'raiffa', 'face')
+% can't use legend with aplot
