@@ -56,6 +56,7 @@ subplot(3,1,2)
 aplot(f8)
 subplot(3,1,3)
 aplot(f32)
+
 %legend('cloth', 'cotton', 'grass', 'pigskin', 'wood', 'cork', 'paper', 'stone', 'raiffa', 'face')
 % can't use legend with aplot
 
@@ -80,4 +81,13 @@ figure(41)
 imagesc(cimage)
 title('Classified composite image in imagesc')
 
+prototypes = k_means(10, f32');
+figure(50)
+hold on
+aplot(f32)
+scatter(prototypes(:,1),prototypes(:,2), 'filled');
+title('k-means cluster, k=10');
+ylabel('x2')
+xlabel('x1');
+hold off
 
