@@ -42,6 +42,8 @@ for i=1:10
         
         clear data testdata m S
 end
+
+clear i
         
 
 
