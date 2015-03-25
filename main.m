@@ -21,9 +21,8 @@ testDatapoints = feature(1:3,1:160); % using a different format so we have class
 % 10 images. These numbers, coincidentally, also correspond to what class
 % the data point belongs to.
 for i=1:10
-        count = 0;
         % 16 blocks per image
-        %1-16, 17-32
+        % 1-16, 17-32
         %lower bound: (16*i-15)
         %upper bound: (16*i)
         
@@ -31,7 +30,8 @@ for i=1:10
         testdata = featureTest(1:2,16*i-15:16*i);      
         %these should each be a 2x16 matrix.
         
-        %our mean/covariance thing takes a COLUMN of ROW VECTORS. rough.
+        %our mean/covariance thing takes a COLUMN of ROW VECTORS. 
+        %transpose the data then transpose the output. whoo.
         [m,S] = getMeanCovar(data');
         means(1:2,i) = m';
         variances(1:2,i*2-1:i*2) = S;
@@ -46,8 +46,29 @@ clear i data testdata m S
         
 
 
+%% part 3-2
+% classify and generate the confusion matrices.
 
+% the confusion matrix is defined as:
+%      \ predicted class
+%actual
+%class
 
+conf = zeros(10,10);
+
+for i = 1:length(f32t)
+    testpt = f32t(1:2,i);
+    est = micd_classify(testpt, f32means, f32covariances);
+    actual = f32t(3,i);
+    
+    if (actual == est)
+        conf(actual,actual) = conf(actual,actual) + 1;
+    else
+        conf(actual,est) = conf(actual,est) + 1;
+    end    
+end
+
+clear i
 
 figure(1)
 subplot(3,1,1)
